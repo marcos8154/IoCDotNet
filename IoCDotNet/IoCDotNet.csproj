@@ -5,9 +5,23 @@
     <RootNamespace>IoCdotNet</RootNamespace>
     <PackageIcon>opposite.png</PackageIcon>
     <PackageIconUrl />
-    <AssemblyVersion>1.0.2.0</AssemblyVersion>
-    <FileVersion>1.0.2.0</FileVersion>
-    <Version>1.0.2</Version>
+    <AssemblyVersion>1.0.5.0</AssemblyVersion>
+    <FileVersion>1.0.5.0</FileVersion>
+    <Version>1.0.5</Version>
+    <Description>A lean IoC container to easily manage your interfaces and multiple implementations</Description>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <PackageProjectUrl>https://github.com/marcos8154/IoCDotNet</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/marcos8154/IoCDotNet.git</RepositoryUrl>
+    <PackageTags>IoC Interfaces Instance</PackageTags>
+    <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
   </PropertyGroup>
+
+  <ItemGroup>
+    <None Include="..\opposite.png">
+      <Pack>True</Pack>
+      <PackagePath></PackagePath>
+    </None>
+  </ItemGroup>
 
 </Project>
