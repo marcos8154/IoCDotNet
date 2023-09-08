@@ -1,0 +1,162 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>IoCDotNet</name>
+    </assembly>
+    <members>
+        <member name="T:IoCdotNet.Attributes.NamedInstance">
+            <summary>
+            A named instance allows the same interface to have several easily accessible implementations. <br/>
+            
+            To request it, 'IoC.ResolveNamed<![CDATA[<T>]]>(...)' must be invoked
+            </summary>
+        </member>
+        <member name="T:IoCdotNet.Attributes.SingletonInstance">
+            <summary>
+            Determines that the instance of this object is singleton inside the IoC container
+            </summary>
+        </member>
+        <member name="T:IoCdotNet.BatchBinding">
+            <summary>
+            Allows you to immediately link batches of interfaces and implementations, based on the Namespace path between them.
+            </summary>
+        </member>
+        <member name="M:IoCdotNet.BatchBinding.MagicBind(System.Reflection.Assembly,System.String,System.String)">
+            <summary>
+             Allows you to immediately link batches of interfaces and implementations, based on the Namespace path between them. <br/>
+            
+            For each interface, its respective implementation will be located within indicated namespace. <br/><br/>
+            So Magical ❤
+            </summary>
+            <param name="baseAssembly">Target assembly-object</param>
+            <param name="interfacesNamespace">Namespace in which a set of interfaces is located</param>
+            <param name="implementationsNamespace">Namespace in which an implementation set of the interfaces that are in 'interfacesNamespace' is located</param>
+        </member>
+        <member name="T:IoCdotNet.InstanceManager">
+            <summary>
+            Interface for allocating and managing instances of other interfaces (IoC)
+            </summary>
+        </member>
+        <member name="M:IoCdotNet.InstanceManager.Bind(System.Type,System.Type,System.Boolean)">
+            <summary>
+            Bind the interface and implementation through Object Type
+            </summary>
+            <param name="interfaceType">Interface object Type</param>
+            <param name="implementationType">Implementation object Type</param>
+            <param name="makeSingleton">Make this bind singleton. When the interface instance is requested, an in-memory instance of the implementation will be returned.</param>
+        </member>
+        <member name="M:IoCdotNet.InstanceManager.Bind(System.String,System.Type,System.Type,System.Boolean)">
+            <summary>
+            Bind the interface and implementation through Object Type
+            </summary>
+            <param name="alias"></param>
+            <param name="interfaceType">Interface object Type</param>
+            <param name="implementationType">Implementation object Type</param>
+            <param name="makeSingleton">Make this bind singleton. When the interface instance is requested, an in-memory instance of the implementation will be returned.</param>
+        </member>
+        <member name="M:IoCdotNet.InstanceManager.Bind``1(System.Type,System.Boolean)">
+            <summary>
+            Binds an interface to a single implementation possibility
+            </summary>
+            <typeparam name="T">Interface type</typeparam>
+            <param name="implementation">Concrete type of interface implementation</param>
+            <param name="singletonInstance">Determines whether the instance of the implementation should be "singleton"</param>
+        </member>
+        <member name="M:IoCdotNet.InstanceManager.Bind``1(System.String,System.Type,System.Boolean)">
+            <summary>
+            Binds an interface to a multiple implementations possibilities
+            </summary>
+            <typeparam name="T">Interface type</typeparam>
+            <param name="alias">A simplified alias to locate one of the possible concrete instances of the interface</param>
+            <param name="implementation">Concrete type of interface implementation</param>
+            <param name="singletonInstance">Determines whether the instance of the implementation should be "singleton"</param>
+        </member>
+        <member name="M:IoCdotNet.InstanceManager.Unbind``1">
+            <summary>
+            Unbind all bindings from interface
+            </summary>
+            <typeparam name="T">Interface type</typeparam>
+        </member>
+        <member name="M:IoCdotNet.InstanceManager.Unbind(System.String)">
+            <summary>
+            Unbind interface bindings from alias name
+            </summary>
+            <param name="alias">Alias name for binding</param>
+        </member>
+        <member name="M:IoCdotNet.InstanceManager.Unbind(System.Type)">
+            <summary>
+            Unbind interface bindings by implementation concrete type
+            </summary>
+            <param name="implementation"></param>
+        </member>
+        <member name="M:IoCdotNet.InstanceManager.Resolve``1(System.Object[])">
+            <summary>
+            Obtains the instance of an implementation through the alias
+            </summary>
+            <typeparam name="T">Interface type</typeparam>
+            <param name="args">Constructor arguments for concrete implementation. If no parameter is entered, the default constructor will be used</param>
+            <returns></returns>
+        </member>
+        <member name="M:IoCdotNet.InstanceManager.ResolveTyped``1(System.Type,System.Object[])">
+            <summary>
+            Obtains the instance of an implementation through the type
+            </summary>
+            <typeparam name="T">Interface type</typeparam>
+            <param name="implementation">The type of a unique, interface-specific implementation</param>
+            <param name="args">Constructor arguments for concrete implementation. If no parameter is entered, the default constructor will be used</param>
+            <returns></returns>
+        </member>
+        <member name="M:IoCdotNet.InstanceManager.ResolveNamed``1(System.String,System.Object[])">
+            <summary>
+            Obtains the instance of an implementation through the alias
+            </summary>
+            <typeparam name="T">Interface type</typeparam>
+            <param name="alias">Alias identifier for one of the possible implementations</param>
+            <param name="args">Constructor arguments for concrete implementation. If no parameter is entered, the default constructor will be used</param>
+            <returns></returns>
+        </member>
+        <member name="M:IoCdotNet.InstanceManager.BindingCollection">
+            <summary>
+            List all binding services from current service manager instance
+            </summary>
+            <returns>List of ManagedServiceBinding</returns>
+        </member>
+        <member name="T:IoCdotNet.IoC">
+            <summary>
+            Support class for accessing IoC services
+            </summary>
+        </member>
+        <member name="M:IoCdotNet.IoC.GetManager">
+            <summary>
+            Gets an instance of the bindings manager.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:IoCdotNet.IoC.ResolveNamed``1(System.String,System.Object[])">
+            <summary>
+            Obtains the instance of an implementation through the alias
+            </summary>
+            <typeparam name="T">Interface type</typeparam>
+            <param name="alias">Alias identifier for one of the possible implementations</param>
+            <param name="args">Constructor arguments for concrete implementation. If no parameter is entered, the default constructor will be used</param>
+            <returns></returns>
+        </member>
+        <member name="M:IoCdotNet.IoC.ResolveTyped``1(System.Type,System.Object[])">
+            <summary>
+            Obtains the instance of an implementation through the type
+            </summary>
+            <typeparam name="T">Interface type</typeparam>
+            <param name="implementation">The type of a unique, interface-specific implementation</param>
+            <param name="args">Constructor arguments for concrete implementation. If no parameter is entered, the default constructor will be used</param>
+            <returns></returns>
+        </member>
+        <member name="M:IoCdotNet.IoC.Resolve``1(System.Object[])">
+            <summary>
+            Obtains the instance of an implementation through the alias
+            </summary>
+            <typeparam name="T">Interface type</typeparam>
+            <param name="args">Constructor arguments for concrete implementation. If no parameter is entered, the default constructor will be used</param>
+            <returns></returns>
+        </member>
+    </members>
+</doc>

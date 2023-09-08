@@ -41,7 +41,7 @@ namespace IoCdotNet
         /// <param name="interfaceType">Interface object Type</param>
         /// <param name="implementationType">Implementation object Type</param>
         /// <param name="makeSingleton">Make this bind singleton. When the interface instance is requested, an in-memory instance of the implementation will be returned.</param>
-        public void Bind(Type interfaceType, Type implementationType, bool makeSingleton);
+        void Bind(Type interfaceType, Type implementationType, bool makeSingleton);
 
         /// <summary>
         /// Bind the interface and implementation through Object Type
@@ -50,7 +50,7 @@ namespace IoCdotNet
         /// <param name="interfaceType">Interface object Type</param>
         /// <param name="implementationType">Implementation object Type</param>
         /// <param name="makeSingleton">Make this bind singleton. When the interface instance is requested, an in-memory instance of the implementation will be returned.</param>
-        public void Bind(string alias, Type interfaceType, Type implementationType, bool makeSingleton);
+        void Bind(string alias, Type interfaceType, Type implementationType, bool makeSingleton);
 
         /// <summary>
         /// Binds an interface to a single implementation possibility

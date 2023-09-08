@@ -122,7 +122,7 @@ namespace IoCdotNet
         {
             try
             {
-                var bind = Bindings.FirstOrDefault(b => alias.Equals(b.Name));
+                var bind = Bindings.FirstOrDefault(b => alias.Equals(b.Name) && b.InterfaceType == typeof(T));
                 if (bind == null)
                     return default;
 
@@ -138,7 +138,7 @@ namespace IoCdotNet
         {
             try
             {
-                var bind = Bindings.FirstOrDefault(b => b.Implementation.Equals(implementation));
+                var bind = Bindings.FirstOrDefault(b => b.Implementation.Equals(implementation) && b.InterfaceType == typeof(T));
                 if (bind == null)
                     return default;
 
