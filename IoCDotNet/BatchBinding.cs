@@ -88,5 +88,61 @@ namespace IoCdotNet
                 }
             }
         }
+
+
+        /// <summary>
+        ///  Allows you to immediately link batches of interfaces and implementations, based on the Namespace path between them. <br/>
+        /// 
+        /// For each interface, its respective implementation will be located within indicated namespace. <br/><br/>
+        /// So Magical ❤
+        /// </summary>
+        /// <param name="interfacesAssembly">Assembly where interfaces are located</param>
+        /// <param name="interfacesNamespace">Namespace in which a set of interfaces is located</param>
+        /// <param name="implementationsAssembly">Assembly where implementations are located</param>
+        /// <param name="implementationsNamespace">Namespace in which an implementation set of the interfaces that are in 'interfacesNamespace' is located</param>
+
+        public static void MagicBind(Assembly interfacesAssembly,
+            string interfacesNamespace,
+            Assembly implementationsAssembly,
+            string implementationsNamespace)
+        {
+            InstanceManager manager = IoC.GetManager();
+
+            Type[] interfaces = interfacesAssembly.GetTypes()
+                .Where(t => t != null && t.IsInterface && interfacesNamespace.Equals(t.Namespace))
+                .ToArray();
+
+            Type[] implementations = implementationsAssembly.GetTypes()
+                .Where(t => t != null && !t.IsInterface && implementationsNamespace.Equals(t.Namespace))
+                .ToArray();
+
+            foreach (Type interfaceType in interfaces)
+            {
+                if (interfaceType.Name.Contains(">"))
+                    continue;
+                if (!interfaceType.IsInterface)
+                    continue;
+
+                List<Type> implementationTypes = implementations
+                      .Where(t => interfaceType.Equals(t.GetInterface(interfaceType.Name)))
+                      .ToList();
+
+                foreach (Type implementationType in implementationTypes)
+                {
+                    if (implementationType.Name.Contains(">"))
+                        continue;
+
+                    bool singleton = implementationType.GetCustomAttribute(typeof(SingletonInstance)) != null;
+                    Attribute namedAttribute = implementationType.GetCustomAttribute(typeof(NamedInstance));
+                    if (namedAttribute == null)
+                        manager.Bind(interfaceType, implementationType, singleton);
+                    else
+                    {
+                        string serviceName = ((NamedInstance)namedAttribute).InstanceName;
+                        manager.Bind(serviceName, interfaceType, implementationType, singleton);
+                    }
+                }
+            }
+        }
     }
 }

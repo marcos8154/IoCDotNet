@@ -5,9 +5,9 @@
     <RootNamespace>IoCdotNet</RootNamespace>
     <PackageIcon>opposite.png</PackageIcon>
     <PackageIconUrl />
-    <AssemblyVersion>1.0.7.0</AssemblyVersion>
-    <FileVersion>1.0.7.0</FileVersion>
-    <Version>1.0.7</Version>
+    <AssemblyVersion>1.0.10.0</AssemblyVersion>
+    <FileVersion>1.0.10.0</FileVersion>
+    <Version>1.0.10</Version>
     <Description>A lean IoC container to easily manage your interfaces and multiple implementations</Description>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <PackageProjectUrl>https://github.com/marcos8154/IoCDotNet</PackageProjectUrl>
