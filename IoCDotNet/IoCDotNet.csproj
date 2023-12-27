@@ -15,6 +15,10 @@
     <PackageTags>IoC Interfaces Instance</PackageTags>
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <Title>IoCDotNet</Title>
+    <Authors>Marcos Vinícius</Authors>
+    <Company>OpenSource</Company>
+    <PackageReleaseNotes>BatchBinding now allows differente assemblies for interfaces/implementtions</PackageReleaseNotes>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
